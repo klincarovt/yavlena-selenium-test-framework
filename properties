@@ -1,0 +1,8 @@
+base.url = https://www.yavlena.com/en/broker?city=Sofia
+browser.type=CHROME
+
+# Other Browser options
+browser.type.CHROME=CHROME
+browser.type.CHROME_HEALDESS=CHROME_HEADLESS
+browser.type.FIREFOX=FIREFOX
+browser.type.FIREFOX_HEADLESS=FIREFOX_HEADLESS
