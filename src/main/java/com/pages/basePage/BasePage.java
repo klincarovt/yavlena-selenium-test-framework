@@ -16,10 +16,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.List;
 
-
 @Getter
 public abstract class BasePage {
-
 
     private WebDriver driver;
     private WebDriverWait wait;
@@ -46,6 +44,12 @@ public abstract class BasePage {
     public <T extends BasePage> BasePage navigateTo(String url, T type) {
         driver.get(url);
         return type.newInstance(driver);
+    }
+
+    public void waitForPageLoad() {
+        new WebDriverWait(this.driver, Duration.ofSeconds(20)).until(
+                webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete")
+        );
     }
 
     protected void moveToElement(WebElement element) {
@@ -79,6 +83,11 @@ public abstract class BasePage {
     protected List<WebElement> waitAndFindElementsFromRoot(WebElement root, By byLocator) {
         wait.until(ExpectedConditions.visibilityOfNestedElementsLocatedBy(root, byLocator));
         return root.findElements(byLocator);
+    }
+
+    protected WebElement waitAndFindElementByLocator(By byLocator) {
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(byLocator));
+        return driver.findElement(byLocator);
     }
 
     protected List<WebElement> waitAndFindElementsByLocator(By byLocator) {

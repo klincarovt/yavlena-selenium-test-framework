@@ -7,5 +7,4 @@ public class ConfigurationConstants {
     public static final String PROPERTIES_PATH = "properties";
     public static final String BASE_URL_PROPERTY = "base.url";
     public static final String DRIVER_TYPE_PROPERTY = "browser.type";
-
 }
