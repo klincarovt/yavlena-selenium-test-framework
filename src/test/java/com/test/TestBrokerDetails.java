@@ -63,7 +63,10 @@ public class TestBrokerDetails {
     @AfterMethod
     void close(){
         try{
-            webDriver.quit();
+            if (webDriver != null) {
+                webDriver.manage().deleteAllCookies();
+                webDriver.quit();
+            }
         }catch (StaleElementReferenceException e) {
             System.err.println("StaleElementReferenceException caught while quitting driver, retrying...");
             webDriver.quit();
