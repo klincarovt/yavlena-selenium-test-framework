@@ -52,7 +52,7 @@ public class TestBrokerDetails {
             yavlenaPage.navigateBack();
         }
 
-/*        allBrokers.forEach(name ->{
+        /*allBrokers.forEach(name ->{
             yavlenaPage.searchByBrokerName(name);
             yavlenaPage.clickOnDetails();
             yavlenaPageAssertions.checkIfWebElementsAreDisplayed(yavlenaPage.getDetailElements());
@@ -64,9 +64,11 @@ public class TestBrokerDetails {
     void close(){
         try{
             webDriver.quit();
-        }catch (StaleElementReferenceException e){
-            e.printStackTrace();
-            System.err.println("An error occurred while closing driver.");
+        }catch (StaleElementReferenceException e) {
+            System.err.println("StaleElementReferenceException caught while quitting driver, retrying...");
+            webDriver.quit();
+        } catch (Exception e) {
+            System.err.println("An error occurred while quitting driver.");
         }
     }
 }
